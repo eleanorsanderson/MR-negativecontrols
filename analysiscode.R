@@ -101,7 +101,7 @@ res_5<-subset_on_method(res_5) #default is to subset on either the IVW method (>
 res_5<-sort_1_to_many(res_5,b="b",sort_action=4) #this sorts results by decreasing effect size (largest effect at top of the plot)
 res_5<-split_exposure(res_5)
 
-plot1 <- forest_plot_1_to_many(res_5,b="b",se="se",
+plot2 <- forest_plot_1_to_many(res_5,b="b",se="se",
                       exponentiate=F,ao_slc=F,
                       TraitM="exposure",col1_width=2.2,by=NULL,
                       xlab="Increase in darkness of hair per SD/Log OR increase in risk factor")
