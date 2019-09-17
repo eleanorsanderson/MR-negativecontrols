@@ -29,7 +29,7 @@ exposure_dat <- clump_data(exposure_dat)
 outcome_dat <- extract_outcome_data(exposure_dat$SNP, c('UKB-b:533'), proxies = 1, rsq = 0.8, align_alleles = 1, palindromes = 1, maf_threshold = 0.3)
 dat <- harmonise_data(exposure_dat, outcome_dat, action = 2)
 res <- mr(dat, method_list=c("mr_ivw", "mr_wald_ratio"))
-write.csv(res, file = "IVWresults.csv")
+#write.csv(res, file = "IVWresults.csv")
 
 ##obtain plot of all exposures with more than 5 snps
 ex_dat_5 <- extract_instruments(c("1096","975","966","85","44","1007","26","91","996","1058","93","90","298","798","72","7","86","60","1025","833","1084","302","31","1001","22","2","300","970","301","299","12","89"))
@@ -128,3 +128,12 @@ outcome_dat_hair_sig <- read_outcome_data(
 dat_sig <- harmonise_data(ex_dat_sig, outcome_dat_hair_sig, action = 2)
 res_sigall <- mr(dat_sig)
 write.csv(res_sigall, file = "sigresults_hair.csv")
+
+
+##binomial test
+
+#tanning ability
+binom.test(12, 33, 0.05)
+
+#hair colour
+binom.test(7, 33, 0.05)
