@@ -1,13 +1,11 @@
 
-ao <- available_outcomes()
+rm(list = ls(all=TRUE))
 
-##MR analysis of education on bmi
-exposure_dat <- extract_instruments(c('1001'))
-exposure_dat <- clump_data(exposure_dat)
-outcome_dat <- extract_outcome_data(exposure_dat$SNP, c('2'), proxies = 1, rsq = 0.8, align_alleles = 1, palindromes = 1, maf_threshold = 0.3, access_token=NULL)
-dat <- harmonise_data(exposure_dat, outcome_dat, action = 2)
-mr_results_edubmi <- mr(dat)
-p1 <- mr_scatter_plot(mr_results_edubmi, dat)
+library(devtools)
+library(TwoSampleMR)
+library(ggplot2)
+
+ao <- available_outcomes()
 
 
 ##analysis of set of exposures on skintone and hair colour
@@ -129,11 +127,3 @@ dat_sig <- harmonise_data(ex_dat_sig, outcome_dat_hair_sig, action = 2)
 res_sigall <- mr(dat_sig)
 write.csv(res_sigall, file = "sigresults_hair.csv")
 
-
-##binomial test
-
-#tanning ability
-binom.test(12, 33, 0.05)
-
-#hair colour
-binom.test(7, 33, 0.05)
