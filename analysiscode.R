@@ -38,23 +38,6 @@ res_5 <- mr(dat_5, method_list=c("mr_ivw"))
 res_5<-split_exposure(res_5)
 res_5 <- res_5[order(res_5$b,decreasing = T, na.last = F),]
 
-
-res_5 <- format_1_to_many(
-  res_5,
-  b = "effect",
-  se = "se",
-  exponentiate = FALSE,
-  ao_slc = T,
-  TraitM = "outcome2",
-  addcols = NULL,
-  weight = NULL
-)
-
-plot1 <- forest_plot_1_to_many(res_5,b="effect",se="se",
-                               exponentiate=F,ao_slc=F,
-                               TraitM="exposure",col1_width=2.2,by=NULL,
-                               xlab="Increase in darkness of hair per SD/Log OR increase in risk factor")
-
 res_5$category[res_5$outcome2 %in% c("Eczema","Paget's disease","Ulcerative colitis", "Celiac disease", "Crohns disease", "Multiple sclerosis", "Type 2 diabetes", "Alzheimer's disease",
                                         "Inflammatory bowel disease", "Asthma", "Coronary heart disease", "Rheumatoid arthritis", "Lung cancer")]<-"Diseases"
 res_5$category[res_5$outcome2 %in% c("Body mass index","Childhood obesity","Waist circumference", "Waist-to-hip ratio", "Extreme body mass index", "Extreme height", "Height",
@@ -64,7 +47,6 @@ res_5$category[is.na(res_5$subcategory)]<-"Other"
 
 plot1_dat <- res_5
 #make the confidence intervals
-
 plot1_dat$up_ci <- plot1_dat$b + 1.96*plot1_dat$se
 plot1_dat$lo_ci <- plot1_dat$b - 1.96*plot1_dat$se
 
@@ -129,7 +111,6 @@ res_5<-split_exposure(res_5)
 
 plot2_dat <- res_5
 #make the confidence intervals
-
 plot2_dat$up_ci <- plot2_dat$b + 1.96*plot2_dat$se
 plot2_dat$lo_ci <- plot2_dat$b - 1.96*plot2_dat$se
 
